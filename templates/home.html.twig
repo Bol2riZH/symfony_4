@@ -1,39 +1,129 @@
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mon App</title>
-</head>
-<body>
-    <h1>{{ title | upper }}</h1>
-    <p>Comment allez vous ?</p>
-    <a href="{{ path('hello', {'prenom': 'Lior', 'age': 31}) }}">Allez voir hello</a>
+{% extends 'base.html.twig' %}
 
-    {#
-    {% if age >= 18 %}
-        <p>Vous êtes un adulte</p>
-    {% elseif age >= 12 %}
-        <p>Vous êtes un adolescent</p>
-    {% else %}
-        <p>Vous êtes un enfant</p>
-    {% endif %}
-    <ul>
-        {% for compteur in 0..10 %}
-            <li>{{ compteur }}</li>
-        {% endfor %}
-    </ul>
-    #}
+{% block title %}
+    Bienvenue sur le meilleur réseau d'appartements
+{% endblock %}
 
-    {% for prenom,age in tableau %}
-        {% if loop.first %}
-            <strong>{{ prenom }} à {{ age }} ans</strong>
-        {%  elseif loop.last %}
-            <em>{{ prenom }} à {{ age }} ans</em>
-        {% else %}
-            <p>{{ prenom }} à {{ age }} ans</p>
-        {% endif %}
-    {% endfor %}
-</body>
-</html>
+{% block body %}
+    <div class="container">
+
+        <div class="card mb-5 mt-3">
+            <h3 class="card-header">Bienvenue sur SymBNB !</h3>
+            <div class="card-body">
+                <h6 class="card-title">Nous mettons en relations les voyageurs et les propriétaires qui veulent profiter
+                    d'opportunités et gagner de l'argent en proposant leur bien à la location !</h6>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
+                 aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice"
+                 viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
+                <rect width="100%" height="100%" fill="#868e96"></rect>
+                <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+            </svg>
+            <div class="card-body">
+                <p class="card-text">
+                    Vous êtes voyageur ? Et vous voulez voir où vous pourrez loger pour votre prochain déplacement ?
+                </p>
+                <button type="button" class="btn btn-primary btn">Voir nos annonces</button>
+            </div>
+        </div>
+
+
+        <h2 class="h1 mt-3 mb-4">Nos appartements stars</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card bg-light mb-3">
+                    <div class="card-header text-center">
+                        3 chambres, <strong>49&euro; / nuit</strong> <br>
+                        <small>Pas encore noté</small>
+                    </div>
+                    <img src="http://placehold.it/1000X400" alt="Image de l'appartement"
+                         style="height: 200px; width: 100%;display: block">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            Appartement de ouf !
+                        </h4>
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eius error officia officiis
+                            quis quo soluta totam. Asperiores, itaque totam!
+                        </p>
+                        <a href="#" class="btn btn-info">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-light mb-3">
+                    <div class="card-header text-center">
+                        3 chambres, <strong>49&euro; / nuit</strong> <br>
+                        <small>Pas encore noté</small>
+                    </div>
+                    <img src="http://placehold.it/1000X400" alt="Image de l'appartement"
+                         style="height: 200px; width: 100%;display: block">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            Appartement de ouf !
+                        </h4>
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eius error officia officiis
+                            quis quo soluta totam. Asperiores, itaque totam!
+                        </p>
+                        <a href="#" class="btn btn-info">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-light mb-3">
+                    <div class="card-header text-center">
+                        3 chambres, <strong>49&euro; / nuit</strong> <br>
+                        <small>Pas encore noté</small>
+                    </div>
+                    <img src="http://placehold.it/1000X400" alt="Image de l'appartement"
+                         style="height: 200px; width: 100%;display: block">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            Appartement de ouf !
+                        </h4>
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eius error officia officiis
+                            quis quo soluta totam. Asperiores, itaque totam!
+                        </p>
+                        <a href="#" class="btn btn-info">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="h1 mt-3 mb-4">Nos propriétaires stars</h2>
+        <div class="row">
+            <div class="col">
+                <div class="card border-secondary mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            Lior Chamla
+                        </h4>
+                        <hr>
+                        <div class="card-text">
+                            <img src="http://placehold.it/64x64" alt="Avatar" class="float-left mr-3">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, pariatur.</p>
+                            <a href="#" class="btn btn-success float-right">En savoir plus !</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border-secondary mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            Lior Chamla
+                        </h4>
+                        <hr>
+                        <div class="card-text">
+                            <img src="http://placehold.it/64x64" alt="Avatar" class="float-left mr-3">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, pariatur.</p>
+                            <a href="#" class="btn btn-success float-right">En savoir plus !</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
