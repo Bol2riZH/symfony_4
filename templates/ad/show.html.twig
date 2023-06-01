@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
-{% block title %}
-    {{ ad.title }}
-{% endblock %}
+ {% block title %}
+     {{ ad.title }}
+ {% endblock %}
 {% block body %}
     <div class="ad-title" style="background-image: url({{ ad.coverImage }})">
         <div class="container">
@@ -15,9 +15,28 @@
     </div>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 mb-3">
-                {{ ad.content }}
+    <div class="row">
+        <div class="col-md-8 mb-3">
+            {{ ad.content }}
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    {% for image in ad.images %}
+                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ loop.index0 }}"
+                            {% if loop.first %}class="active"{% endif %}></li>
+                    {% endfor %}
+                </ol>
+                <div class="carousel-inner">
+                    {% for image in ad.images %}
+                        <div class="carousel-item {% if loop.first %}active{% endif %}">
+                            <img class="d-block w-100" src="{{ image.url }}" alt="First slide">
+                        </div>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>{{ ad.title }}</h5>
+                            <p>{{ image.caption }}</p>
+                        </div>
+                    {% endfor %}
+
+                </div>
             </div>
             <div class="col">
                 <div class="row">
