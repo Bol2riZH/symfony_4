@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Ad;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
@@ -14,14 +15,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AdType extends AbstractType
 {
-    private function getConfiguration($label, $placeholder): array
+    private function getConfiguration(string $label, string $placeholder, array $options = []): array
     {
-        return [
+        return array_merge([
             'label' => $label,
             'attr' => [
                 'placeholder' => $placeholder
             ]
-        ];
+        ], $options);
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -30,7 +31,9 @@ class AdType extends AbstractType
             ->add('title', TextType::class,
                 $this->getConfiguration('Titre', 'Tapez un super titre pour votre annonce'))
             ->add('slug', TextType::class,
-                $this->getConfiguration('Chaine URL', 'Adresse web (automatique'))
+                $this->getConfiguration('Chaine URL', 'Adresse web (automatique)', [
+                    'required' => false
+                ]))
             ->add('coverImage', UrlType::class,
                 $this->getConfiguration('URL de l\'image principale', "Donnez l'adresse d'une image qui donne vraiment envie"))
             ->add('introduction', TextType::class,
@@ -40,7 +43,14 @@ class AdType extends AbstractType
             ->add('rooms', IntegerType::class,
                 $this->getConfiguration('Nombre de chambre', "Le nombre de chambre disponibles"))
             ->add('price', MoneyType::class,
-                $this->getConfiguration('Prix par nuit', 'Indiquez le prix que vous voulez par nuit'));
+                $this->getConfiguration('Prix par nuit', 'Indiquez le prix que vous voulez par nuit'))
+            ->add(
+                'images',
+                CollectionType::class, [
+                    'entry_type' => ImageType::class,
+                    'allow_add' => true
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void
